@@ -14,7 +14,7 @@ class Create_set(Base):
         cur.execute("create table if not exists " + name +
                     """ (ID integer primary 
                     key autoincrement, term text, definition text, 
-                    correct integer default 0, pass integer default
+                    correct integer default 0, incorrect integer default
                     0, archived text default 'N');""")
 
         print("Created new flashcard set '" +name+ "'.")

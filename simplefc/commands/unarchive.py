@@ -13,10 +13,10 @@ class Unarchive(Base):
         name = str(self.options.get('<setname>'))
         IDs = self.options.get('<ID>')
         
-        print('\n(ID, term, correct, pass, archived)')
+        print('\n(ID, term, correct, incorrect, archived)')
         for i in IDs:
             cards = cur.execute("select ID, term, correct, "
-                                "pass, archived from " +name+
+                                "incorrect, archived from " +name+
                                 " where ID is " +i+ ";")
             [print(j) for j in cards]
  

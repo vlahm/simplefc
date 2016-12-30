@@ -12,10 +12,10 @@ class View_archive(Base):
         cur = conn.cursor()
         name = str(self.options.get('<setname>'))
         cards = cur.execute("select ID, term, correct, "
-                            "pass from " +name+ " where archived "
+                            "incorrect from " +name+ " where archived "
                             "is 'Y';")
 
-        print('(ID, term, correct, pass)')
+        print('(ID, term, correct, incorrect)')
         for i in cards:
             print(i)
 

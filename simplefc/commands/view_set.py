@@ -12,9 +12,9 @@ class View_set(Base):
         cur = conn.cursor()
         name = str(self.options.get('<setname>'))
         cards = cur.execute("select ID, term, correct, "
-                            "pass, archived from " +name)
+                            "incorrect, archived from " +name)
 
-        print('(ID, term, correct, pass, archived)')
+        print('(ID, term, correct, incorrect, archived)')
         for i in cards:
             print(i)
 

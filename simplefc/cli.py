@@ -4,11 +4,12 @@ simplefc (simple flash card)
 Usage:
   simplefc create_set <setname>
   simplefc add_entry <setname> (-i <entry>... | -f <file>...)
-  simplefc study <setname> -xyz
+  simplefc study [-tdbamfsr] <setname>
   simplefc view_set <setname>
   simplefc view_archive <setname>
   simplefc unarchive <setname> <ID>...
   simplefc delete_entry <setname> <ID>...
+  simplefc list_sets
   simplefc delete_set <setname>
   simplefc [-h | --help]
   simplefc [-v | --version]
@@ -16,6 +17,11 @@ Usage:
 Options:
   -h --help  Show this page.
   -v --version  Show version.
+  -a  Include all entries.
+  -m  Include many entries, but exclude the easy ones. Useful
+      after logging substantial study time.
+  -f  Include few entries, only the hard ones. Useful after
+      logging substantial study time.
 
 Examples:
   simplefc -C 'biology 450 final'
