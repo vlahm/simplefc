@@ -1,8 +1,5 @@
 *.pyc
 *.db
-.cache
-.coverage
 *.egg-info
-build
-dist
 *.swp
+todo.txt
