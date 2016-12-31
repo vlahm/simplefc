@@ -2,8 +2,10 @@
 simplefc (simple flash card)
 
 Usage:
+  simplefc [-h | --help]
+  simplefc [-v | --version]
   simplefc create_set <setname>
-  simplefc add_entry <setname> (-i <entry>... | -f <file>...)
+  simplefc add_entry <setname> (-I <entry>... | -F <file>...)
   simplefc study [-tdbamfsr] <setname>
   simplefc view_set <setname>
   simplefc view_archive <setname>
@@ -11,25 +13,43 @@ Usage:
   simplefc delete_entry <setname> <ID>...
   simplefc list_sets
   simplefc delete_set <setname>
-  simplefc [-h | --help]
-  simplefc [-v | --version]
+  simplefc reset_data <setname>
+
+Arguments:
+  <setname>      The name of a simplefc flashcard set. Cannot 
+                 contain spaces or special characters. Must begin 
+                 with a letter.
+  <entry>        An entry of the form 'term;;definition'.
+  <file>         A file containing unquoted entries of the 
+                 above form. Each entry must have its own line.
+  <ID>           The identification number of an entry.
 
 Options:
-  -h --help  Show this page.
-  -v --version  Show version.
-  -a  Include all entries.
-  -m  Include many entries, but exclude the easy ones. Useful
-      after logging substantial study time.
-  -f  Include few entries, only the hard ones. Useful after
-      logging substantial study time.
+  -h --help      Show this page.
+  -v --version   Show version.
+  -I             Add entries individually.
+  -F             Add entries from a file.
+  -t             Study terms.
+  -d             Study definitions.
+  -b             Study with randomized terms and definitions.
+  -a             'All' - Include all entries.
+  -m             'Many' - Exclude easy entries (those with 
+                 correct:incorrect ratio >= 2). 
+  -f             'Few' - Include only hard entries (those with 
+                 correct:incorrect ratio <= 0.75).
+  -s             Go through entries sequentially (in the order 
+                 they were recorded).
+  -r             Go through entries in random order.
+
 
 Examples:
-  simplefc -C 'biology 450 final'
-  simplefc -a 'biology 450 final' -i 'xanthophyll~a yellow or brown carotenoid pigment found in plants; anthocyanin~a red flavonoid pigment found in plants'
-  simplefc -S 'biology 450 final' -z
+  simplefc create_set 'biology_450_final'
+  simplefc add_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
+  simplefc study -bmr biology 450 final
+  simplefc delete_entry biology_450_final 1 2
 
 Help:
-  For help using this tool, please open an issue on the Github repository:
+  For help using this tool, please open an issue on Github:
   https://github.com/vlahm/simplefc
 """
 

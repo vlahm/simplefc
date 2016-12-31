@@ -14,11 +14,11 @@ class Add_entry(Base):
         cur = conn.cursor()
         name = str(self.options.get('<setname>'))
 
-        if self.options.get('-i'):
+        if self.options.get('-I'):
             entries = self.options.get('<entry>')
             for i in entries:
                 if ';;' not in i:
-                    cur.close(); conn.close()
+                    conn.commit(); conn.close()
                     sys.exit("All entries must be of the form "
                              "'term;;definition'. Separate each "
                              "entry with a space.")
@@ -28,7 +28,7 @@ class Add_entry(Base):
                             "definition) values (?,?);", 
                             (term, definition,))
 
-        elif self.options.get('-f'):
+        elif self.options.get('-F'):
             fcfile = open(self.options.get('<file>')[0])
             entries = fcfile.read().split('\n')[:-1]
             for i in entries:
@@ -40,14 +40,20 @@ class Add_entry(Base):
             for i in entries:
                 term, definition = i.split(';;')
                 cur.execute("insert into " +name+ " (term, "
-                            "definition) values ('" +term+ "','" +
-                            definition+ "');")
-
+                            "definition) values ('" +term+ "','"
+                            +definition+ "');")
+            
         else:
             conn.commit(); conn.close()
             sys.exit("You must use either the '-i' or '-f' tag, "
                      "followed by one or more individual entries "
                      "or the path to a text file, respectively.")
+
+        num = str(len(entries))
+        if num == '1':
+            print('Added 1 entry.')
+        else:
+            print('Added ' +num+ ' entries.')
 
         conn.commit()
         conn.close()

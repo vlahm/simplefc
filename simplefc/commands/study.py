@@ -6,6 +6,7 @@ from .base import Base
 import sqlite3
 import os
 import sys
+import random
 
 class _Getch:
     """Gets a single character from standard input. Does not 
@@ -48,7 +49,7 @@ class Study(Base):
         ch1 = _Getch()
         ch = ch1()
         if ch == 'a':
-            answer = self.cur.execute("select " +self.tdb[1]+
+            answer = self.cur.execute("select " +self.td[1]+
             " from " +self.name+ " where ID is " +str(self.i)+ ";")
             [print(j[0]) for j in answer]
             print("\n'c' if you got it, 'i' if not, 'e' to exit\n")
@@ -62,8 +63,7 @@ class Study(Base):
                 "incorrect=incorrect+1 where ID is " +str(self.i)+ 
                 ";")
             elif ch == 'e':
-                self.conn.commit()
-                self.conn.close()
+                self.conn.commit(); self.conn.close()
                 sys.exit('Progress saved.')
             else:
                 print('invalid')
@@ -73,17 +73,28 @@ class Study(Base):
             self.flash()
 
     def mode_parser(self):
-        if self.options.get('-s') or self.default == True:
-            if self.options.get('-b'):
-                
-            else:
-                for i in self.pool:
-                    term = self.cur.execute("select " +self.tdb[0]+
-                    " from " +self.name+ " where ID is " +str(i)+
-                    " and archived='N';")
-                    [print(j[0]) for j in term]
-                    self.i = i
-                    self.flash()
+        if self.options.get('-r'):
+            random.shuffle(self.pool)
+
+        if self.options.get('-b'):
+            for i in self.pool:
+                self.td = ['term','definition']
+                random.shuffle(self.td)
+                term = self.cur.execute("select " +self.td[0]+
+                " from " +self.name+ " where ID is " +str(i)+
+                " and archived='N';")
+                [print(j[0]) for j in term]
+                self.i = i
+                self.flash()
+        else:
+            for i in self.pool:
+                term = self.cur.execute("select " +self.td[0]+
+                " from " +self.name+ " where ID is " +str(i)+
+                " and archived='N';")
+                [print(j[0]) for j in term]
+                self.i = i
+                self.flash()
+        
 
     def allfc(self):
         self.pool = self.cur.execute("select ID from " +self.name+
@@ -105,9 +116,9 @@ class Study(Base):
     def termdef(self):
         self.pool = [i[0] for i in self.pool]
         if self.options.get('-t'):
-            self.tdb = ['term','definition']
+            self.td = ['term','definition']
         elif self.options.get('-d'):
-            self.tdb = ['definition','term']
+            self.td = ['definition','term']
         else:
             pass
 
@@ -131,24 +142,13 @@ class Study(Base):
         elif key in ['fst','ftr','bfs','bfr','dfs','dfr']:
             self.fewfc()
         elif key == '':
-            self.tdb = ['term','definition']
-            self.default = True
+            self.td = ['term','definition']
             self.allfc()
         else:
+            self.conn.commit(); self.conn.close()
             sys.exit("Need one flag each from -tdb -amf and -sr,\n"
                      "or no flags for the default (-tas).\n"
                      "Enter 'simplefc -h' for details.")
-
-        #flagdict = {'ast':self.allfc(), 'art':self.allfc(),
-        #            'abs':self.allfc(), 'abr':sel,'ads','adr','mst','mrt','bms','bmr','dms','dmr','fst','frt','bfs','bfr','dfs','dfr'}
-        #self.ast()
-        
-            
-
-        #ts = [self.options.get(i) for i in ['-t','-s']]
-        #if all(ts):
-        #    pool = 
-        #    cur.execute("
 
         self.conn.commit()
         self.conn.close()

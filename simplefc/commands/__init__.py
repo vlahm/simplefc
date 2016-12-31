@@ -7,3 +7,4 @@ from .study import *
 from .view_archive import *
 from .unarchive import *
 from .list_sets import *
+from .reset_data import *
