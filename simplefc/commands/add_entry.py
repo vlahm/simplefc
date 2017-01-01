@@ -1,4 +1,4 @@
-"""Add entries to flashcard sets, either individually or by
+"""Add entries to flashcard sets, either manually or by
 reading a file."""
 
 from .base import Base
@@ -14,7 +14,7 @@ class Add_entry(Base):
         cur = conn.cursor()
         name = str(self.options.get('<setname>'))
 
-        if self.options.get('-I'):
+        if self.options.get('-M'):
             entries = self.options.get('<entry>')
             for i in entries:
                 if ';;' not in i:

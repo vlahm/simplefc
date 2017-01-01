@@ -5,7 +5,7 @@ Usage:
   simplefc [-h | --help]
   simplefc [-v | --version]
   simplefc create_set <setname>
-  simplefc add_entry <setname> (-I <entry>... | -F <file>...)
+  simplefc add_entry <setname> (-M <entry>... | -F <file>...)
   simplefc study [-tdbamfsr] <setname>
   simplefc view_set <setname>
   simplefc view_archive <setname>
@@ -20,14 +20,14 @@ Arguments:
                  contain spaces or special characters. Must begin 
                  with a letter.
   <entry>        An entry of the form 'term;;definition'.
-  <file>         A file containing unquoted entries of the 
+  <file>         A text file containing unquoted entries of the 
                  above form. Each entry must have its own line.
   <ID>           The identification number of an entry.
 
 Options:
   -h --help      Show this page.
   -v --version   Show version.
-  -I             Add entries individually.
+  -M             Add entries manually.
   -F             Add entries from a file.
   -t             Study terms.
   -d             Study definitions.
@@ -46,7 +46,7 @@ Examples:
   simplefc create_set 'biology_450_final'
   simplefc add_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
   simplefc study -bmr biology 450 final
-  simplefc delete_entry biology_450_final 1 2
+  simplefc delete_entry biology_450_final 1 2 7 9
 
 Help:
   For help using this tool, please open an issue on Github:

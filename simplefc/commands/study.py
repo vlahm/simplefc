@@ -45,14 +45,15 @@ class _GetchWindows:
 class Study(Base):
 
     def flash(self):
-        print("\nPress 'a' to see correct answer.\n")
+        print("\n ~*~ Press [space] for answer.")
         ch1 = _Getch()
         ch = ch1()
-        if ch == 'a':
+        if ch == ' ':
             answer = self.cur.execute("select " +self.td[1]+
             " from " +self.name+ " where ID is " +str(self.i)+ ";")
-            [print(j[0]) for j in answer]
-            print("\n'c' if you got it, 'i' if not, 'e' to exit\n")
+            [print('\n' + j[0]) for j in answer]
+            print("\n ~*~ 'c' = correct, 'i' = incorrect, 'e' "
+                  "= exit, 'a' = archive")
             ch2 = _Getch()
             ch = ch2()
             if ch == 'c':
@@ -62,14 +63,44 @@ class Study(Base):
                 self.cur.execute("update " +self.name+ " set "
                 "incorrect=incorrect+1 where ID is " +str(self.i)+ 
                 ";")
+            elif ch == 'a':
+                print('\n-------------------------------------')
+                print('\n ~*~ Entry staged for archive:')
+                print('\n(ID, term, definition, correct, '
+                      'incorrect, archived)')
+                ent = self.cur.execute("select ID, term, definition"
+                    ", correct, incorrect, archived from "
+                    +self.name+ " where ID is " +str(self.i)+ ";")
+                [print(j) for j in ent]
+                arch = input('\n ~*~ This entry will be removed '
+                             'from play until\n     you unarchive it'
+                             '. Confirm archive? (y/n)\n > ')
+                if arch == 'y':
+                    self.cur.execute("update " +self.name+ " set "
+                    "archived='Y' where ID is " +str(self.i)+ ";")
+                    print('\n ~*~ Entry archived.')
+                elif arch == 'n':
+                    print('\n ~*~ Archiving aborted.')
+                    print(" ~*~ Press any key to continue.")
+                    ch1 = _Getch()
+                    ch = ch1()
+                    try:
+                        ch
+                    except NameError:
+                        pass
+                    else:
+                        self.mode_parser()
+                else:
+                    print('\n ~*~ Invalid.')
+                    self.flash()
             elif ch == 'e':
                 self.conn.commit(); self.conn.close()
                 sys.exit('Progress saved.')
             else:
-                print('invalid')
+                print('\n ~*~ invalid')
                 self.flash()
         else:
-            print('invalid')
+            print('\n ~*~ invalid')
             self.flash()
 
     def mode_parser(self):
@@ -83,7 +114,7 @@ class Study(Base):
                 term = self.cur.execute("select " +self.td[0]+
                 " from " +self.name+ " where ID is " +str(i)+
                 " and archived='N';")
-                [print(j[0]) for j in term]
+                [print('\n' + j[0]) for j in term]
                 self.i = i
                 self.flash()
         else:
@@ -91,7 +122,7 @@ class Study(Base):
                 term = self.cur.execute("select " +self.td[0]+
                 " from " +self.name+ " where ID is " +str(i)+
                 " and archived='N';")
-                [print(j[0]) for j in term]
+                [print('\n' + j[0]) for j in term]
                 self.i = i
                 self.flash()
         

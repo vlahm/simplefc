@@ -16,7 +16,7 @@ entry.
 1. Requirements
 2. Installation
 3. Usage
-4. Notes
+4. Planned Updates
 5. Contact the author
 
 ---
@@ -26,62 +26,80 @@ Tested on Ubuntu 14.04
 
 ---
 ### **2. Installation**
-+ `pip install simplefc`
-
-+ Navigate to [https://github.com/vlahm/linux_utils/tree/master/Chime/dist](https://github.com/vlahm/linux_utils/tree/master/Chime/dist)
-2. Right-click `chime-1.0.0.tar.gz` and save link to desired location.
-3. Navigate to the folder where you saved the tarball, then execute:
+1. Open terminal/command prompt and enter: `pip install simplefc`. Must have pip installed.
+2. Install from source tarball:
+  1.Navigate to [https://github.com/vlahm/simplefc/tree/master/dist](https://github.com/vlahm/simplefc/tree/master/dist).
+  2. Right-click `simplefc-1.0.0.tar.gz` and save link to desired location.
+  3. Navigate to the folder where you saved the tarball, then execute:
 
   ```
-  tar -xzvf chime-1.0.0.tar.gz  
+  tar -xzvf chime-1.0.0.tar.gz #just right-click and extract if on Windows
   pip install chime-1.0.0/  
   ```
   (The slash is important in the above command.)
-
+  
 ---
 ### **3. Usage**
-Chime takes two arguments: a duration and an error message.  The duration is specified as a single string containing a number followed by ‘h’, ‘m’, or ‘s’, for ‘hours’, ‘minutes’, or ‘seconds’. You can also combine units, as in '1h20m3s'. The error message is a separate string, which is returned when the time is up.
+Flash cards are stored as "entries" and are grouped in "sets".
 
-#### 1. Basic (using `python` command from shell)
-`python path/to/chime.py <duration> <reminder message>`  
-
-Note that this usage may return benign error messages.
-##### **_Examples:_**
-`python chime.py 2m45s`  
-`python ~/chime.py 1h5m 'get laundry'`
-#### 2. Run from anywhere with alias
-Add the following function to your `.bashrc` file:
-```bash
-function chime { 
-    python path/to/chime.py $1 $2
-}
 ```
-Then execute from any terminal with, e.g. `chime 1h15m 'start dinner'`.
-#### 3. Run from anywhere as daemon (disconnect from shell)
-For full functionality (and suppression of potential noncritical error messages),
-it is best to run Chime as a daemon process, which
-places it in the "background" and allows you to close the terminal that
-spawned it without terminating its process.
+Usage:
+  simplefc [-h | --help]
+  simplefc [-v | --version]
+  simplefc create\_set \<setname\>
+  simplefc add\_entry \<setname\> (-M \<entry\>... | -F \<file\>...)
+  simplefc study [-tdbamfsr] \<setname\>
+  simplefc view\_set \<setname\>
+  simplefc view\_archive \<setname\>
+  simplefc unarchive \<setname\> \<ID\>...
+  simplefc delete\_entry \<setname\> \<ID\>...
+  simplefc list\_sets
+  simplefc delete\_set \<setname\>
+  simplefc reset\_data \<setname\>
 
-Add the following function to your `.bashrc` file.
-You'll need to update the filepath for `chime.py`. You can put the output file
-`nohup.py` in the same directory as `chime.py` or anywhere you like. Just note
-that it's referred to twice in this function definition, and both will have to be
-modified.
-```bash
-function chime { 
-    nohup python example/path/chime.py $1 $2 > \
-    example/path/nohup.out 2>/dev/null & disown $!
-    sleep 1s
-    tail --lines=1 example/path/nohup.out
-}    
+Arguments:
+  \<setname\>      The name of a simplefc flashcard set. Cannot 
+                 contain spaces or special characters. Must begin 
+                 with a letter.
+  \<entry\>        An entry of the form 'term;;definition'.
+  \<file\>         A file containing unquoted entries of the 
+                 above form. Each entry must have its own line.
+  \<ID\>           The identification number of an entry.
+
+Options:
+  -h --help      Show this page.
+  -v --version   Show version.
+  -M             Add entries manually.
+  -F             Add entries from a file.
+  -t             Study terms.
+  -d             Study definitions.
+  -b             Study with randomized terms and definitions.
+  -a             'All' - Include all entries.
+  -m             'Many' - Exclude easy entries (those with 
+                 correct:incorrect ratio >= 2). 
+  -f             'Few' - Include only hard entries (those with 
+                 correct:incorrect ratio <= 0.75).
+  -s             Go through entries sequentially (in the order 
+                 they were recorded).
+  -r             Go through entries in random order.
+
+
+Examples:
+  simplefc create\_set 'biology\_450\_final'
+  simplefc add\_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
+  simplefc study -bmr biology 450 final
+  simplefc delete\_entry biology\_450\_final 1 2 7 9
 ```
-Then execute from any terminal with, e.g. `chime 1h15m 'start dinner'`.  
-It will now be safe to exit the terminal.
 
 ---
-### **4. Contact the author**
+###**4. Planned Updates**
++ Commands for writing/reading flash card sets to/from .csv files
++ Better error handling. If you get cryptic, internal errors, and the answers aren't in the docs, open an issue on my Github. See below.
+
+---
+### **5. Contact the author**
 Mike Vlah: 
 + vlahm13@gmail[dot]com
++ [https://github.com/vlahm](https://github.com/vlahm)
 + [linkedin.com/in/michaelvlah](linkedin.com/in/michaelvlah)
 
