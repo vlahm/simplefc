@@ -143,29 +143,30 @@ class Study(Base):
         self.comb_pool = list(range(len(self.tables)))
         if self.which == 'many':
             for i in range(len(self.tables)):
-                self.comb_pool[i] = self.cur.execute("select ID from"
+                id_list = self.cur.execute("select ID from"
                             " " +self.tables[i]+ " where archived="
                             "'N' and correct/incorrect <= 2;")
-                self.comb_pool[i] = [j[0] for j in self.comb_pool[i]]
+                self.comb_pool[i] = [j[0] for j in id_list]
         elif self.which == 'few':
             for i in range(len(self.tables)):
-                self.comb_pool[i] = self.cur.execute("select ID from"
+                id_list = self.cur.execute("select ID from"
                             " " +self.tables[i]+ " where archived="
                             "'N' and correct/incorrect <= 0.75;")
-                self.comb_pool[i] = [j[0] for j in self.comb_pool[i]]
+                self.comb_pool[i] = [j[0] for j in id_list]
         else:
             for i in range(len(self.tables)):
-                self.comb_pool[i] = self.cur.execute("select ID from"
+                id_list = self.cur.execute("select ID from"
                             " " +self.tables[i]+ " where archived="
                             "'N';")
-                self.comb_pool[i] = [j[0] for j in self.comb_pool[i]]
-        for tab in self.comb_pool:
-            random.shuffle(tab)
+                self.comb_pool[i] = [j[0] for j in id_list]
+        for tab in range(len(self.comb_pool)):
+            random.shuffle(self.comb_pool[tab])
+            self.comb_pool[tab].append(self.tables[tab])
         random.shuffle(self.comb_pool)
         tab_ind = list(range(len(self.comb_pool)))
         for tab in tab_ind:
             tab_ind[tab] = list(repeat(tab, 
-                                len(self.comb_pool[tab])))
+                                len(self.comb_pool[tab])-1))
         self.flat = [i for sublist in tab_ind for i in sublist]
         random.shuffle(self.flat)
         self.flat_count = 0
@@ -186,13 +187,12 @@ class Study(Base):
         fcset = self.flat[self.flat_count]
         entry = self.entry_count[fcset]
         self.i = self.comb_pool[fcset][entry]
-        term = self.cur.execute("select " +self.td[0]+
-            " from " +self.tables[fcset]+ " where ID is "
-            +str(self.i)+ ";")
+        self.name = self.comb_pool[fcset][len(self.comb_pool[fcset])-1]
+        term = self.cur.execute("select " +self.td[0]+ " from " 
+               +self.name+ " where ID is " +str(self.i)+ ";")
         [print('\n' + j[0]) for j in term]
         self.flat_count += 1
         self.entry_count[fcset] += 1
-        self.name = self.tables[fcset]
         self.counter = len(self.flat) - self.flat_count + 1
         self.flash()
         self.comb_tdb()

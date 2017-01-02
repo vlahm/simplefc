@@ -31,13 +31,13 @@ according to how well you've performed on each entry.
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.0.2.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.0.3.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 
-``tar -xzvf simplefc-1.0.2.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.0.3.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.0.2/``
+``pip install simplefc-1.0.3/``
 
 (The slash is important in the above command.)
 

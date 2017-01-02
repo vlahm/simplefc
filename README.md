@@ -29,12 +29,12 @@ Tested on Ubuntu 14.04
 1. Open terminal/command prompt and enter: `pip install simplefc`. Must have pip installed.
 2. Install from source tarball:
   1.Navigate to [https://github.com/vlahm/simplefc/tree/master/dist](https://github.com/vlahm/simplefc/tree/master/dist).
-  2. Right-click `simplefc-1.0.2.tar.gz` and save link to desired location.
+  2. Right-click `simplefc-1.0.3.tar.gz` and save link to desired location.
   3. Navigate to the folder where you saved the tarball, then execute:
 
   ```
-  tar -xzvf simplefc-1.0.2.tar.gz #just right-click and extract if on Windows
-  pip install simplefc-1.0.2/  
+  tar -xzvf simplefc-1.0.3.tar.gz #just right-click and extract if on Windows
+  pip install simplefc-1.0.3/  
   ```
   (The slash is important in the above command.)
   
