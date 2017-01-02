@@ -18,7 +18,8 @@ Usage:
 Arguments:
   <setname>      The name of a simplefc flashcard set. Cannot 
                  contain spaces or special characters. Must begin 
-                 with a letter.
+                 with a letter. Use '.' in place of a setname with 
+                 the 'study' command to study all sets at once.
   <entry>        An entry of the form 'term;;definition'.
   <file>         A text file containing unquoted entries of the 
                  above form. Each entry must have its own line.

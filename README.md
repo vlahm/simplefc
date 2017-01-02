@@ -46,25 +46,25 @@ Flash cards are stored as "entries" and are grouped in "sets".
 Usage:
   simplefc [-h | --help]
   simplefc [-v | --version]
-  simplefc create\_set \<setname\>
-  simplefc add\_entry \<setname\> (-M \<entry\>... | -F \<file\>...)
-  simplefc study [-tdbamfsr] \<setname\>
-  simplefc view\_set \<setname\>
-  simplefc view\_archive \<setname\>
-  simplefc unarchive \<setname\> \<ID\>...
-  simplefc delete\_entry \<setname\> \<ID\>...
-  simplefc list\_sets
-  simplefc delete\_set \<setname\>
-  simplefc reset\_data \<setname\>
+  simplefc create_set <setname>
+  simplefc add_entry <setname> (-M <entry>... | -F <file>...)
+  simplefc study [-tdbamfsr] <setname>
+  simplefc view_set <setname>
+  simplefc view_archive <setname>
+  simplefc unarchive <setname> <ID>...
+  simplefc delete_entry <setname> <ID>...
+  simplefc list_sets
+  simplefc delete_set <setname>
+  simplefc reset_data <setname>
 
 Arguments:
-  \<setname\>      The name of a simplefc flashcard set. Cannot 
+  <setname>      The name of a simplefc flashcard set. Cannot 
                  contain spaces or special characters. Must begin 
                  with a letter.
-  \<entry\>        An entry of the form 'term;;definition'.
-  \<file\>         A file containing unquoted entries of the 
+  <entry>        An entry of the form 'term;;definition'.
+  <file>         A file containing unquoted entries of the 
                  above form. Each entry must have its own line.
-  \<ID\>           The identification number of an entry.
+  <ID>           The identification number of an entry.
 
 Options:
   -h --help      Show this page.
@@ -85,10 +85,10 @@ Options:
 
 
 Examples:
-  simplefc create\_set 'biology\_450\_final'
-  simplefc add\_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
+  simplefc create_set 'biology_450_final'
+  simplefc add_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
   simplefc study -bmr biology 450 final
-  simplefc delete\_entry biology\_450\_final 1 2 7 9
+  simplefc delete_entry biology_450_final 1 2 7 9
 ```
 
 ---
