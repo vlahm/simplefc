@@ -102,7 +102,7 @@ class Study(Base):
                     self.flash()
             elif ch == 'e':
                 self.conn.commit(); self.conn.close()
-                sys.exit('Progress saved.')
+                sys.exit('Changes saved.')
             else:
                 print('\n ~*~ invalid')
                 self.flash()
@@ -115,15 +115,15 @@ class Study(Base):
             random.shuffle(self.pool)
 
         if self.options.get('-b'):
-            for i in self.pool:
+            for i in range(len(self.pool)):
                 self.td = ['term','definition']
                 random.shuffle(self.td)
                 term = self.cur.execute("select " +self.td[0]+
-                " from " +self.name+ " where ID is " +str(i)+
-                " and archived='N';")
+                " from " +self.name+ " where ID is " 
+                +str(self.pool[i])+ " and archived='N';")
                 [print('\n' + j[0]) for j in term]
                 self.i = i
-                self.counter = len(self.pool) - self.i + 1
+                self.counter = len(self.pool) - self.i
                 self.flash()
         else:
             for i in self.pool:

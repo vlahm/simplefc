@@ -31,12 +31,15 @@ according to how well you've performed on each entry.
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.0.0.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.0.2.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 
-``tar -xzvf chime-1.0.0.tar.gz #just right-click and extract if on Windows   pip install chime-1.0.0/``
-(The slash is important in the above command
+``tar -xzvf simplefc-1.0.2.tar.gz #just right-click and extract if on Windows``
+
+``pip install simplefc-1.0.2/``
+
+(The slash is important in the above command.)
 
 **3. Usage**
 ~~~~~~~~~~~~
@@ -92,7 +95,7 @@ Flash cards are stored as “entries” and are grouped in “sets”.
       simplefc study -bmr biology 450 final
       simplefc delete_entry biology_450_final 1 2 7 9
 
---------------.)
+--------------
 
 **4. Planned Updates**
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -106,5 +109,7 @@ Flash cards are stored as “entries” and are grouped in “sets”.
 **5. Contact the author**
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mike Vlah: + vlahm13@gmail[dot]com + https://github.com/vlahm +
-`linkedin.com/in/michaelvlah <linkedin.com/in/michaelvlah>`__
+Mike Vlah:
+-  vlahm13@gmail[dot]com
+-  https://github.com/vlahm
+-  https://linkedin.com/in/michaelvlah
