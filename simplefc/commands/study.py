@@ -45,19 +45,49 @@ class _GetchWindows:
 
 class Study(Base):
 
+    def vim_edit(self):
+        
+        import tempfile
+        from subprocess import call
+
+        EDITOR = os.environ.get('EDITOR','vim')
+        with tempfile.NamedTemporaryFile(suffix=".tmp") as tf:
+            tf.write(bytearray(self.edit, 'utf-8'))
+            tf.flush()
+            call([EDITOR, tf.name])
+            tf.seek(0)
+            edited = tf.read().decode('utf-8').strip('\n')
+            if self.column in ['term', 'definition']:
+                self.cur.execute("update " +self.name+ " set "
+                    +self.column+ "='" +edited+ "' where ID is "
+                    +str(self.i)+ ";")
+            else:
+                self.cur.execute("update " +self.name+ " set "
+                    +self.column+ "=" +edited+ " where ID is "
+                    +str(self.i)+ ";")
+
+            print('\n ~*~ Edit successful. Press any key'
+                  ' to continue.')
+            ch = _Getch()
+            ch = ch()
+            try:
+                ch
+            except NameError:
+                pass
+
     def flash(self):
         print("\n ~" +str(self.counter)+ "~ Press [space] for"
               " answer.")
-        ch1 = _Getch()
-        ch = ch1()
+        ch = _Getch()
+        ch = ch()
         if ch == ' ':
             answer = self.cur.execute("select " +self.td[1]+
             " from " +self.name+ " where ID is " +str(self.i)+ ";")
             [print('\n' + j[0]) for j in answer]
-            print("\n ~*~ 'c' = correct, "
-                  "'i' = incorrect, 'e' = exit, 'a' = archive")
-            ch2 = _Getch()
-            ch = ch2()
+            print("\n ~*~ c=correct, i=incorrect, e=edit, q=quit, "
+                  "a=archive")
+            ch = _Getch()
+            ch = ch()
             if ch == 'c':
                 self.cur.execute("update " +self.name+ " set correct"
                 "=correct+1 where ID is " +str(self.i)+ ";")
@@ -65,6 +95,39 @@ class Study(Base):
                 self.cur.execute("update " +self.name+ " set "
                 "incorrect=incorrect+1 where ID is " +str(self.i)+ 
                 ";")
+            elif ch == 'e':
+                print('\n-------------------------------------')
+                print('\n ~*~ Edit Mode:\n')
+                headers = ['ID', 'term', 'definition', 'correct',
+                      'incorrect']
+                x = self.cur.execute("select ID, term, definition"
+                    ", correct, incorrect from "
+                    +self.name+ " where ID is " +str(self.i)+ ";")
+                vals = list()
+                [vals.append(i) for i in x]
+                [print(' '+headers[i]+': '+
+                 str(vals[0][i])) for i in range(len(vals[0]))]
+                print("\n ~*~ Edit: t=term, d=definition, c=correct"
+                      ", i=incorrect, other=abort")
+                ch = _Getch()
+                ch = ch()
+                if ch == 't':
+                    self.column = 'term'
+                elif ch == 'd':
+                    self.column = 'definition'
+                elif ch == 'c':
+                    self.column = 'correct'
+                elif ch == 'i':
+                    self.column = 'incorrect'
+                else:
+                    self.flash()
+
+                self.cur.execute("select " +self.column+ " from "
+                      +self.name+ " where ID is " +str(self.i)+
+                      ";")
+                self.edit = str(self.cur.fetchall()[0][0])
+                self.vim_edit()
+            
             elif ch == 'a':
                 print('\n-------------------------------------')
                 print('\n ~*~ Entry staged for archive:')
@@ -82,8 +145,8 @@ class Study(Base):
                     "archived='Y' where ID is " +str(self.i)+ ";")
                     print(' ~*~ Entry archived. Press any key'
                           ' to continue.')
-                    ch1 = _Getch()
-                    ch = ch1()
+                    ch = _Getch()
+                    ch = ch()
                     try:
                         ch
                     except NameError:
@@ -91,8 +154,8 @@ class Study(Base):
                 elif arch == 'n':
                     print(' ~*~ Archiving aborted. Press any key'
                           ' to continue.')
-                    ch1 = _Getch()
-                    ch = ch1()
+                    ch = _Getch()
+                    ch = ch()
                     try:
                         ch
                     except NameError:
@@ -100,7 +163,7 @@ class Study(Base):
                 else:
                     print('\n ~*~ Invalid.')
                     self.flash()
-            elif ch == 'e':
+            elif ch == 'q':
                 self.conn.commit(); self.conn.close()
                 sys.exit('Changes saved.')
             else:
