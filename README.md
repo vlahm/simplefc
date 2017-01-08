@@ -21,7 +21,7 @@ entry.
 
 ---
 ### **1. Requirements**
-Python 3.2 or later
+Python 2.7 or 3.5 (may work on other versions)
 Tested on Ubuntu 14.04
 
 ---
@@ -31,6 +31,7 @@ Tested on Ubuntu 14.04
   1.Navigate to [https://github.com/vlahm/simplefc/tree/master/dist](https://github.com/vlahm/simplefc/tree/master/dist).
   2. Right-click `simplefc-1.1.0.tar.gz` and save link to desired location.
   3. Navigate to the folder where you saved the tarball, then execute:
+3. **Optional**: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using `simplefc change_dbpath path/to/shared_drive/newfile.db` on all devices.
 
   ```
   tar -xzvf simplefc-1.1.0.tar.gz #just right-click and extract if on Windows
@@ -41,6 +42,7 @@ Tested on Ubuntu 14.04
 ---
 ### **3. Usage**
 Flash cards are stored as "entries" and are grouped in "sets".
+Sets are stored in database files (.db) and accessed via sqlite3.
 
 ```
 Usage:
