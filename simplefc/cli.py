@@ -13,6 +13,8 @@ Usage:
   simplefc delete_entry <setname> <ID>...
   simplefc list_sets
   simplefc delete_set <setname>
+  simplefc view_dbpath
+  simplefc change_dbpath <newpath>
   simplefc reset_data <setname>
 
 Arguments:
@@ -24,6 +26,8 @@ Arguments:
   <file>         A text file containing unquoted entries of the 
                  above form. Each entry must have its own line.
   <ID>           The identification number of an entry.
+  <newpath>      The location of simplefc's database file. Use 
+                 'default' to restore the default location.
 
 Options:
   -h --help      Show this page.
@@ -53,7 +57,13 @@ Help:
   For help using this tool, please open an issue on Github:
   https://github.com/vlahm/simplefc
 """
+from __future__ import unicode_literals
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 
+from future import standard_library
+standard_library.install_aliases()
 from inspect import getmembers, isclass
 from docopt import docopt
 from . import __version__ as VERSION

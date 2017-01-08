@@ -3,3 +3,5 @@ include README.rst
 include setup.cfg
 include README.md
 exclude .git
+include simplefc/dbpath.txt
+exclude todo.txt

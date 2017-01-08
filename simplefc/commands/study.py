@@ -1,7 +1,18 @@
 """Present entries individually, either by term (-t), 
 definition (-d), or both (-b). Include all (-a), many (exclude 
 easy ones; -m), or few (only the hard ones; -f)."""
+from __future__ import print_function
+from __future__ import unicode_literals
+from __future__ import division
+from __future__ import absolute_import
 
+from builtins import input
+from builtins import zip
+from builtins import range
+from builtins import str
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
 from .base import Base
 import sqlite3
 import os
@@ -9,7 +20,7 @@ import sys
 import random
 from numpy import repeat
 
-class _Getch:
+class _Getch(object):
     """Gets a single character from standard input. Does not 
 echo to the screen."""
     def __init__(self):
@@ -20,7 +31,7 @@ echo to the screen."""
 
     def __call__(self): return self.impl()
 
-class _GetchUnix:
+class _GetchUnix(object):
     def __init__(self):
         import tty, sys
 
@@ -35,7 +46,7 @@ class _GetchUnix:
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
         return ch
 
-class _GetchWindows:
+class _GetchWindows(object):
     def __init__(self):
         import msvcrt
 
@@ -289,7 +300,11 @@ class Study(Base):
     
     def run(self):
         path = os.path.dirname(os.path.realpath(__file__))
-        self.conn = sqlite3.connect(path + '/../simplefc.db')
+        dbpfp = path + '/../dbpath.txt'
+        dbpathfile = open(dbpfp, 'r')
+        dbpath = dbpathfile.read()
+        dbpathfile.close()
+        self.conn = sqlite3.connect(dbpath)
         self.cur = self.conn.cursor()
         self.name = str(self.options.get('<setname>'))
         flags = ['-t','-d','-b','-a','-m','-f','-s','-r']

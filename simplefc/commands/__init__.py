@@ -8,3 +8,5 @@ from .view_archive import *
 from .unarchive import *
 from .list_sets import *
 from .reset_data import *
+from .view_dbpath import *
+from .change_dbpath import *

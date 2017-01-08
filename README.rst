@@ -31,13 +31,13 @@ according to how well you've performed on each entry.
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.0.4.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.1.0.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 
-``tar -xzvf simplefc-1.0.4.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.1.0.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.0.4/``
+``pip install simplefc-1.1.0/``
 
 (The slash is important in the above command.)
 
@@ -60,6 +60,8 @@ Flash cards are stored as “entries” and are grouped in “sets”.
       simplefc delete_entry <setname> <ID>...
       simplefc list_sets
       simplefc delete_set <setname>
+      simplefc view_dbpath
+      simplefc change_dbpath <newpath>
       simplefc reset_data <setname>
 
     Arguments:
@@ -70,6 +72,8 @@ Flash cards are stored as “entries” and are grouped in “sets”.
       <file>         A file containing unquoted entries of the 
                      above form. Each entry must have its own line.
       <ID>           The identification number of an entry.
+      <newpath>      The location of simplefc's database file. Use 
+                     'default' to restore the default location.
 
     Options:
       -h --help      Show this page.
@@ -103,6 +107,7 @@ Flash cards are stored as “entries” and are grouped in “sets”.
 -  Commands for writing/reading flash card sets to/from .csv files
 -  Better error handling. If you get cryptic, internal errors, and the
    answers aren't in the docs, open an issue on my Github. See below.
+-  Graphical illustrations of progress based on detailed performance data.
 
 --------------
 
