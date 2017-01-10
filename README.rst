@@ -27,7 +27,7 @@ according to how well you've performed on each entry.
 **1. Requirements**
 ~~~~~~~~~~~~~~~~~~~
 Python 2.7 or 3.5 (may work on other versions)
-Tested on Ubuntu 14.04
+Tested on Ubuntu 14.04 and OS X 10.10.2
 
 
 **2. Installation**
@@ -37,14 +37,14 @@ Tested on Ubuntu 14.04
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.1.0.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.1.1.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 3. Optional: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using ``simplefc change_dbpath path/to/shared_drive/newfile.db`` on all devices.
 
-``tar -xzvf simplefc-1.1.0.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.1.1.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.1.0/``
+``pip install simplefc-1.1.1/``
 
 (The slash is important in the above command.)
 

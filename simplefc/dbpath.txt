@@ -1,1 +1,1 @@
-/home/mike/git/simplefc/simplefc/simplefc.db
+/home/mike/Dropbox/stuff_2/data_and_ideas/Self Science/simplefc.db

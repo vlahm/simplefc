@@ -17,7 +17,7 @@ class Create_set(Base):
         path = os.path.dirname(os.path.realpath(__file__))
         dbpfp = path + '/../dbpath.txt'
         if not os.path.exists(dbpfp):
-            dbpathfile = open(dbpfp, 'w+r')
+            dbpathfile = open(dbpfp, 'w+')
             path = path.strip('commands')
             dbpathfile.write(path + 'simplefc.db')
             dbpathfile.close()
