@@ -19,6 +19,10 @@ class Add_entry(Base):
     def run(self):
         path = os.path.dirname(os.path.realpath(__file__))
         dbpfp = path + '/../dbpath.txt'
+        if not os.path.exists(dbpfp):
+            sys.exit("No database file detected. Use "
+                     "'simplefc create_set <setname>' to get "
+                     "started.")
         dbpathfile = open(dbpfp, 'r')
         dbpath = dbpathfile.read()
         dbpathfile.close()
