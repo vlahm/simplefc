@@ -1,6 +1,7 @@
 """Present entries individually, either by term (-t), 
 definition (-d), or both (-b). Include all (-a), many (exclude 
 easy ones; -m), or few (only the hard ones; -f)."""
+
 from __future__ import print_function
 from __future__ import unicode_literals
 from __future__ import division
@@ -132,12 +133,8 @@ class Study(Base):
                     self.column = 'incorrect'
                 else:
                     self.flash()
-
-                self.cur.execute("select " +self.column+ " from "
-                      +self.name+ " where ID is " +str(self.i)+
-                      ";")
-                self.edit = str(self.cur.fetchall()[0][0])
-                self.vim_edit()
+                if ch in ['t', 'd', 'c', 'i']:
+                    self.pre_edit()
             
             elif ch == 'a':
                 print('\n-------------------------------------')
@@ -184,6 +181,14 @@ class Study(Base):
             print('\n ~*~ invalid')
             self.flash()
 
+    def pre_edit(self):
+        self.cur.execute("select " +self.column+ " from "
+              +self.name+ " where ID is " +str(self.i)+
+              ";")
+        self.edit = str(self.cur.fetchall()[0][0])
+        self.vim_edit()
+        
+
     def mode_parser(self):
         if self.options.get('-r'):
             random.shuffle(self.pool)
@@ -196,17 +201,17 @@ class Study(Base):
                 " from " +self.name+ " where ID is " 
                 +str(self.pool[i])+ " and archived='N';")
                 [print('\n' + j[0]) for j in term]
-                self.i = i
-                self.counter = len(self.pool) - self.i
+                self.i = self.pool[i]
+                self.counter = len(self.pool) - i + 1
                 self.flash()
         else:
-            for i in self.pool:
+            for i in range(len(self.pool)):
                 term = self.cur.execute("select " +self.td[0]+
-                " from " +self.name+ " where ID is " +str(i)+
-                " and archived='N';")
+                " from " +self.name+ " where ID is " 
+                +str(self.pool[i])+ " and archived='N';")
                 [print('\n' + j[0]) for j in term]
-                self.i = i
-                self.counter = len(self.pool) - self.i + 1
+                self.i = self.pool[i]
+                self.counter = len(self.pool) - i + 1
                 self.flash()
     
     def combined_sets(self):
