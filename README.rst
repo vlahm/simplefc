@@ -27,7 +27,8 @@ according to how well you've performed on each entry.
 **1. Requirements**
 ~~~~~~~~~~~~~~~~~~~
 Python 2.7 or 3.5 (may work on other versions)
-Tested on Ubuntu 14.04 and OS X 10.10.2
+Tested on Ubuntu 14.04 and OS X 10.10.2.
+Currently unavailable for Windows.
 
 
 **2. Installation**
@@ -37,14 +38,14 @@ Tested on Ubuntu 14.04 and OS X 10.10.2
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.1.1.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.1.2.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 3. Optional: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using ``simplefc change_dbpath path/to/shared_drive/newfile.db`` on all devices.
 
-``tar -xzvf simplefc-1.1.1.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.1.2.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.1.1/``
+``pip install simplefc-1.1.2/``
 
 (The slash is important in the above command.)
 
@@ -52,7 +53,7 @@ Tested on Ubuntu 14.04 and OS X 10.10.2
 ~~~~~~~~~~~~
 
 Flash cards are stored as “entries” and are grouped in “sets”.
-Sets are stored in database files (.db) and accessed via sqlite3.
+Sets are stored in database files (.db) and accessed internally via sqlite3.
 
 ::
 
