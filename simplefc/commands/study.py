@@ -96,8 +96,8 @@ class Study(Base):
             answer = self.cur.execute("select " +self.td[1]+
             " from " +self.name+ " where ID is " +str(self.i)+ ";")
             [print('\n' + j[0]) for j in answer]
-            print("\n ~*~ c=correct, i=incorrect, e=edit, q=quit, "
-                  "a=archive")
+            print("\n ~*~ (c)orrect, (i)ncorrect, (e)dit, (q)uit, "
+                  "(a)rchive")
             ch = _Getch()
             ch = ch()
             if ch == 'c':
@@ -119,8 +119,8 @@ class Study(Base):
                 [vals.append(i) for i in x]
                 [print(' '+headers[i]+': '+
                  str(vals[0][i])) for i in range(len(vals[0]))]
-                print("\n ~*~ Edit: t=term, d=definition, c=correct"
-                      ", i=incorrect, other=abort")
+                print("\n ~*~ Edit: (t)erm, (d)efinition, (c)orrect"
+                      ", (i)ncorrect, other=abort")
                 ch = _Getch()
                 ch = ch()
                 if ch == 't':
@@ -202,7 +202,7 @@ class Study(Base):
                 +str(self.pool[i])+ " and archived='N';")
                 [print('\n' + j[0]) for j in term]
                 self.i = self.pool[i]
-                self.counter = len(self.pool) - i + 1
+                self.counter = len(self.pool) -i -1
                 self.flash()
         else:
             for i in range(len(self.pool)):
@@ -211,7 +211,7 @@ class Study(Base):
                 +str(self.pool[i])+ " and archived='N';")
                 [print('\n' + j[0]) for j in term]
                 self.i = self.pool[i]
-                self.counter = len(self.pool) - i + 1
+                self.counter = len(self.pool) -i -1
                 self.flash()
     
     def combined_sets(self):

@@ -30,13 +30,13 @@ Currently unavailable for Windows.
 1. Open terminal/command prompt and enter: `pip install simplefc`. Must have pip installed.
 2. Install from source tarball:
   1.Navigate to [https://github.com/vlahm/simplefc/tree/master/dist](https://github.com/vlahm/simplefc/tree/master/dist).
-  2. Right-click `simplefc-1.1.2.tar.gz` and save link to desired location.
+  2. Right-click `simplefc-1.1.3.tar.gz` and save link to desired location.
   3. Navigate to the folder where you saved the tarball, then execute:
 3. **Optional**: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using `simplefc change_dbpath path/to/shared_drive/newfile.db` on all devices.
 
   ```
-  tar -xzvf simplefc-1.1.2.tar.gz #just right-click and extract if on Windows
-  pip install simplefc-1.1.2/  
+  tar -xzvf simplefc-1.1.3.tar.gz #just right-click and extract if on Windows
+  pip install simplefc-1.1.3/  
   ```
   (The slash is important in the above command.)
   
@@ -108,6 +108,6 @@ Examples:
 ### **5. Contact the author**
 Mike Vlah: 
 + vlahm13@gmail[dot]com
-+ [https://github.com/vlahm](https://github.com/vlahm)
-+ [linkedin.com/in/michaelvlah](linkedin.com/in/michaelvlah)
++ [github](https://github.com/vlahm)
++ [linkedin](https://www.linkedin.com/in/michaelvlah)
 

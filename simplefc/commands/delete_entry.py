@@ -43,7 +43,10 @@ class Delete_entry(Base):
             for i in IDs:
                 cur.execute("delete from " +name+ " where ID is "
                             +i+ ";")
-            print('Entries deleted.')
+            if len(IDs) > 1:
+                print('Entries deleted.')
+            else:
+                print('Entry deleted.')
         elif choice == 'n':
             print('Aborted.')
         else:
