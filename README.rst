@@ -38,14 +38,14 @@ Currently unavailable for Windows.
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.1.3.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.1.4.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 3. Optional: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using ``simplefc change_dbpath path/to/shared_drive/newfile.db`` on all devices.
 
-``tar -xzvf simplefc-1.1.3.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.1.4.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.1.3/``
+``pip install simplefc-1.1.4/``
 
 (The slash is important in the above command.)
 
@@ -57,56 +57,57 @@ Sets are stored in database files (.db) and accessed internally via sqlite3.
 
 ::
 
-    Usage:
-      simplefc [-h | --help]
-      simplefc [-v | --version]
-      simplefc create_set <setname>
-      simplefc add_entry <setname> (-M <entry>... | -F <file>...)
-      simplefc study [-tdbamfsr] <setname>
-      simplefc view_set <setname>
-      simplefc view_archive <setname>
-      simplefc unarchive <setname> <ID>...
-      simplefc delete_entry <setname> <ID>...
-      simplefc list_sets
-      simplefc delete_set <setname>
-      simplefc view_dbpath
-      simplefc change_dbpath <newpath>
-      simplefc reset_data <setname>
+Usage:
+  simplefc [-h | --help]
+  simplefc [-v | --version]
+  simplefc create_set <setname>
+  simplefc add_entry <setname> (-M <entry>... | -F <file>...)
+  simplefc study [-tdbamfsr] <setname>
+  simplefc view_set <setname>
+  simplefc view_archive <setname>
+  simplefc unarchive <setname> <ID>...
+  simplefc delete_entry <setname> <ID>...
+  simplefc list_sets
+  simplefc delete_set <setname>
+  simplefc view_dbpath
+  simplefc change_dbpath <newpath>
+  simplefc reset_data <setname>
 
-    Arguments:
-      <setname>      The name of a simplefc flashcard set. Cannot 
-                     contain spaces or special characters. Must begin 
-                     with a letter.
-      <entry>        An entry of the form 'term;;definition'.
-      <file>         A file containing unquoted entries of the 
-                     above form. Each entry must have its own line.
-      <ID>           The identification number of an entry.
-      <newpath>      The location of simplefc's database file. Use 
-                     'default' to restore the default location.
+Arguments:
+  <setname>      The name of a simplefc flashcard set. Cannot 
+                 contain spaces or special characters. Must begin 
+                 with a letter. Use '.' in place of a setname with 
+                 the 'study' command to study all sets at once.
+  <entry>        An entry of the form 'term;;definition'.
+  <file>         A text file containing unquoted entries of the 
+                 above form. Each entry must have its own line.
+  <ID>           The identification number of an entry.
+  <newpath>      The location of simplefc's database file. Use 
+                 'default' to restore the default location.
 
-    Options:
-      -h --help      Show this page.
-      -v --version   Show version.
-      -M             Add entries manually.
-      -F             Add entries from a file.
-      -t             Study terms.
-      -d             Study definitions.
-      -b             Study with randomized terms and definitions.
-      -a             'All' - Include all entries.
-      -m             'Many' - Exclude easy entries (those with 
-                     correct:incorrect ratio >= 2). 
-      -f             'Few' - Include only hard entries (those with 
-                     correct:incorrect ratio <= 0.75).
-      -s             Go through entries sequentially (in the order 
-                     they were recorded).
-      -r             Go through entries in random order.
+Options:
+  -h --help      Show this page.
+  -v --version   Show version.
+  -M             Add entries manually.
+  -F             Add entries from a file.
+  -t             Study terms.
+  -d             Study definitions.
+  -b             Study with randomized terms and definitions.
+  -a             'All' - Include all entries.
+  -m             'Many' - Exclude easy entries (those with 
+                 correct:incorrect ratio >= 2). 
+  -f             'Few' - Include only hard entries (those with 
+                 correct:incorrect ratio <= 0.75).
+  -s             Go through entries sequentially (in the order 
+                 they were recorded).
+  -r             Go through entries in random order.
 
 
-    Examples:
-      simplefc create_set 'biology_450_final'
-      simplefc add_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
-      simplefc study -bmr biology 450 final
-      simplefc delete_entry biology_450_final 1 2 7 9
+Examples:
+  simplefc create_set 'biology_450_final'
+  simplefc add_entry biology 450 final -M 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants' "Kingsfoil;;aye, it's a weed!"
+  simplefc study -bar biology 450 final
+  simplefc delete_entry biology_450_final 1 3
 
 --------------
 

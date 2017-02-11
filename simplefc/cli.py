@@ -49,9 +49,9 @@ Options:
 
 Examples:
   simplefc create_set 'biology_450_final'
-  simplefc add_entry biology 450 final -I 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants'
-  simplefc study -bmr biology 450 final
-  simplefc delete_entry biology_450_final 1 2 7 9
+  simplefc add_entry biology 450 final -M 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants' "Kingsfoil;;aye, it's a weed!"
+  simplefc study -bar biology 450 final
+  simplefc delete_entry biology_450_final 1 3
 
 Help:
   For help using this tool, please open an issue on Github:
