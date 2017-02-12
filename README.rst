@@ -38,14 +38,14 @@ Currently unavailable for Windows.
    Must have pip installed.
 2. Install from source tarball: 1.Navigate to
    https://github.com/vlahm/simplefc/tree/master/dist.
-3. Right-click ``simplefc-1.1.4.tar.gz`` and save link to desired
+3. Right-click ``simplefc-1.1.5.tar.gz`` and save link to desired
    location.
 4. Navigate to the folder where you saved the tarball, then execute:
 3. Optional: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using ``simplefc change_dbpath path/to/shared_drive/newfile.db`` on all devices.
 
-``tar -xzvf simplefc-1.1.4.tar.gz #just right-click and extract if on Windows``
+``tar -xzvf simplefc-1.1.5.tar.gz #just right-click and extract if on Windows``
 
-``pip install simplefc-1.1.4/``
+``pip install simplefc-1.1.5/``
 
 (The slash is important in the above command.)
 
@@ -104,10 +104,11 @@ Options:
 
 
 Examples:
-  simplefc create_set 'biology_450_final'
-  simplefc add_entry biology 450 final -M 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants' "Kingsfoil;;aye, it's a weed!"
-  simplefc study -bar biology 450 final
-  simplefc delete_entry biology_450_final 1 3
+  simplefc create_set BIO450_final
+  simplefc add_entry BIO450_final -M 'xanthophyll;;a yellow or brown carotenoid pigment found in plants' 'anthocyanin;;a red flavonoid pigment found in plants' "Kingsfoil;;aye, it's a weed!"
+  simplefc study -bar BIO450_final
+  simplefc delete_entry BIO450_final 1 3
+  simplefc delete_set BIO450_final
 
 --------------
 
