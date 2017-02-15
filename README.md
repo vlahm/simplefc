@@ -32,13 +32,12 @@ Currently unavailable for Windows.
   1. Navigate to [https://github.com/vlahm/simplefc/tree/master/dist](https://github.com/vlahm/simplefc/tree/master/dist).
   2. Right-click `simplefc-1.1.5.tar.gz` and save link to desired location.
   3. Navigate to the folder where you saved the tarball, then execute:
-3. **Optional**: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using `simplefc change_dbpath path/to/shared_drive/newfile.db` on all devices.
-
   ```
   tar -xzvf simplefc-1.1.5.tar.gz #just right-click and extract if on Windows
   pip install simplefc-1.1.5/  
   ```
   (The slash is important in the above command.)
+3. **Optional**: to share your flash card sets across devices, simply move the simplefc database location to a shared drive using `simplefc change_dbpath path/to/shared_drive/newfile.db` on all devices.
   
 ---
 ### **3. Usage**
