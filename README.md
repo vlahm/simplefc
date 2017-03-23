@@ -21,8 +21,8 @@ entry.
 
 ---
 ### **1. Requirements**
-Python 2.7 or 3.5 (may work on other versions)
-Tested on Ubuntu 14.04 and OS X 10.10.2.
+Python 2.7 or 3.5 (may work on other versions)  
+Tested on Ubuntu 14.04 and OS X 10.10.2.  
 Currently unavailable for Windows.
 
 ---
