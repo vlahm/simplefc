@@ -12,6 +12,8 @@ or weekly. Practice by term, definition, or both. You can even hone
 your study sessions according to how well you've performed on each 
 entry.
 
+![demo_image](demo_image.png)
+
 ### **Contents**
 1. Requirements
 2. Installation
